@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from  .models import Users
+from django.contrib.auth.decorators import login_required,user_passes_test
 common=['password','12324567890','qwerty']
 def index(request):
     return render(request,'index.html')
@@ -39,9 +40,25 @@ def register_view(request):
             return redirect('wait')
     return render(request,'register.html')
 def login_view(request):
+    if request.method == 'POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        user=authenticate(request,username=username,password=password) 
+        if user is not None:
+            login(request,user)
+            if user.is_superuser:
+                return redirect('superuser')
+            elif user.is_active:
+                return redirect('userprofile')
+            else:
+                return redirect('wait')
+        else:
+            messages.error(request,'Invalid credentials')
+            return redirect('login')
     return render(request,'login.html')
 def wait(request):
     return render(request,'wait.html')
+
 def superuser(request):
     return render(request,'superuser.html')
 def userprofile(request):
