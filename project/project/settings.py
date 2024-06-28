@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.middleware.visitlimit',#here middleware is a app name and visit limit is a class name in middleware.py file
+
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -127,3 +129,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CACHES={
+    'default':{
+        "BACKEND":"django.core.cache.backends.locmem.LocMemCache",
+    }
+}
