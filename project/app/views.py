@@ -1,6 +1,6 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from django.contrib.auth import login,logout
 def index(request):
     return render(request,'index.html')
 def register_view(request):
@@ -13,3 +13,5 @@ def superuser(request):
     return render(request,'superuser.html')
 def userprofile(request):
     return render(request,'userprofile.html')
+def logout(request):
+    return redirect('index')
