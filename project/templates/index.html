@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background with Navbar</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="{% static 'videos/rotateearth.mp4' %}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="brand-logo">Artist</a>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" class="login-btn"><span class="icon">&#10084;&#65039;</span> Login</a>
+                <a href="{% url 'register' %}" class="register-btn"><span class="icon">&#10084;&#65039;</span> Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2> Hello this is Artist</h2>
+    </div>
+</body>
+</html>
